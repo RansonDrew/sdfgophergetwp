@@ -33,3 +33,6 @@ def printwpposts(wpposts):
 	     print('Post title:',swaphtml(wppost.get('title').get('rendered')))
 	     print('Post date:',postdt)
 	     print('Post content:', swaphtml(wppost.get('content').get('rendered')))
+
+myPosts = getwpposts()
+printwpposts(myPosts)
