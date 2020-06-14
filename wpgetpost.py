@@ -2,6 +2,8 @@ import requests
 import datetime
 import textwrap
 
+blgUrl = 'https://drewfowler.com/wp-json/wp/v2/posts/?categories=8'
+
 def swaphtml(intext):
      outtext = intext.replace('&#8217;',"'")
      outtext = outtext.replace('&#8230;',"...")
@@ -22,8 +24,8 @@ def fmttextpost(intext,txtwidth):
      finaltxt = a.join(newtxt)
      return finaltxt
 
-def getwpposts():
-     response = requests.get('https://drewfowler.com/wp-json/wp/v2/posts/?categories=8')
+def getwpposts(tgtUrl):
+     response = requests.get(tgtUrl)
      posts = response.json()
      return posts
 
@@ -34,5 +36,5 @@ def printwpposts(wpposts):
 	     print('Post date:',postdt)
 	     print('Post content:', swaphtml(wppost.get('content').get('rendered')))
 
-myPosts = getwpposts()
+myPosts = getwpposts(blgUrl)
 printwpposts(myPosts)
